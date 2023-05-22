@@ -26,8 +26,8 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     }
 
     @Override
-    public Customer getCustomerById(Long customerId) {
-        return null;
+    public Customer getCustomerById(Long id) {
+        return entityManager.find(Customer.class,id);
     }
 
     @Override
@@ -36,17 +36,28 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     }
 
     @Override
-    public void updateCustomer(Long customerId, Customer customer) {
-
+    public void updateCustomer(Long id, Customer customer) {
+        Customer customer1 = entityManager.find(Customer.class, id);
+        customer1.setName(customer.getName());
+        customer1.setSurName(customer.getSurName());
+        customer1.setEmail(customer.getEmail());
+        customer1.setGender(customer.getGender());
+        customer1.setPhoneNumber(customer.getPhoneNumber());
+        customer1.setDateOfBirth(customer.getDateOfBirth());
+        entityManager.merge(customer1);
     }
 
     @Override
-    public void deleteCustomerByID(Long customerId) {
-
+    public void deleteCustomerByID(Long id) {
+        entityManager.remove(entityManager.find(Customer.class,id));
     }
 
     @Override
     public void assignCustomerToAgency(Long customerId, Long agencyId) {
-
+        Customer customer = entityManager.find(Customer.class, customerId);
+        Agency agency = entityManager.find(Agency.class, agencyId);
+        customer.getAgencies().add(agency);
+        agency.getCustomers().add(customer);
+        entityManager.persist(customer);
     }
 }

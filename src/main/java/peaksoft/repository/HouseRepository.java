@@ -10,4 +10,6 @@ public interface HouseRepository {
     List<House> getAllHouses(Long agencyId);
     void updateHouse(Long houseId,House house);
     void deleteHouse(Long houseId);
+
+
 }

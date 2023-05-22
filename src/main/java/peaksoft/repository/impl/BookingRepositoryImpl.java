@@ -20,28 +20,37 @@ public class BookingRepositoryImpl implements BookingRepository {
         this.entityManager = entityManager;
     }
 
+
     @Override
     public void saveBooking(Booking booking) {
-
-    }
-
-    @Override
-    public Agency getBookingById(Long bookingId) {
-        return null;
+        entityManager.persist(booking);
     }
 
     @Override
     public List<Booking> getAllBooking() {
-        return null;
+        return entityManager.createQuery("select b from Booking b order by b.id desc ", Booking.class).getResultList();
     }
 
     @Override
-    public void updateBooking(Long bookingId, Booking booking) {
-
+    public List<Booking> getAllHouse() {
+        return entityManager.createQuery("from Booking b ",Booking.class).getResultList();
     }
 
     @Override
-    public void deleteBooking(Long bookingId) {
+    public Booking getBookingById(Long id) {
+        return entityManager.find(Booking.class, id);
+    }
 
+    @Override
+    public void updateBooking(Long id, Booking booking) {
+        Booking booking1 = entityManager.find(Booking.class, id);
+        booking1.setHouse(booking.getHouse());
+        booking1.setCustomer(booking.getCustomer());
+        entityManager.merge(booking1);
+    }
+
+    @Override
+    public void deleteBookingById(Long id) {
+        entityManager.remove(entityManager.find(Booking.class, id));
     }
 }

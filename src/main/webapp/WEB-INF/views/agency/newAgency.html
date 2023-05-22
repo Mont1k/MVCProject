@@ -6,6 +6,19 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <script>
+        function validateForm() {
+            var countryCode = document.getElementById("countryCode").value;
+
+            if (countryCode !== "+996") {
+                alert("Введите правильный код страны +996");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
 </head>
 <body>
 
@@ -22,7 +35,8 @@
     </div>
     <div>
         <label style="right: 400%" for="phone number">Phone Number</label>
-        <input style="right: 400%" type="text" th:field="*{phoneNumber}" id="phone number">
+        <input style="right: 400%" type="text"  id="phone number" name="phone number" pattern="\+996\d{9}"
+               title="+996 need" required th:field="*{phoneNumber}">
     </div>
     <div>
         <label style="right: 400%" for="email">Email</label>
@@ -45,6 +59,8 @@
     <button type="submit">Save Agency</button>
 
 </form>
+
+    }
 
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"

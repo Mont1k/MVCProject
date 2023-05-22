@@ -3,6 +3,7 @@ package peaksoft.repository.impl;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import peaksoft.entity.Agency;
@@ -65,3 +66,4 @@ public class HouseRepositoryImpl implements HouseRepository {
         house.setAgency(null);
     }
 }
+

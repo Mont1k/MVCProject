@@ -1,10 +1,10 @@
-package peaksoft.repository;
+package peaksoft.service;
 
 import peaksoft.entity.Customer;
 
 import java.util.List;
 
-public interface CustomerRepository {
+public interface CustomerService {
     void saveCustomer(Customer customer);
     Customer getCustomerById(Long id);
     List<Customer> getAllCustomers();

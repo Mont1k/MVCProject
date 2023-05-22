@@ -26,6 +26,7 @@ public class Customer {
     private String email;
     @Enumerated(EnumType.STRING)
     private Gender gender;
+    @Column(name = "phone_number")
     private String phoneNumber;
     private LocalDate dateOfBirth;
     @ManyToMany(cascade = {DETACH, MERGE, REFRESH, PERSIST})
