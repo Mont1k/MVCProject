@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>New Agency</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <form th:method="POST" th:action="@{save}" th:object="${newAgency}">
     <div>
+
         <label for="name"> Name</label>
         <input type="text" th:field="*{name}" id="name">
     </div>

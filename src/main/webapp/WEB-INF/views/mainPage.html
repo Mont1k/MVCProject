@@ -15,15 +15,17 @@
 <body>
 <div class="container" style="width: 80%; margin: 0 auto">
     <div class="card" style="width: 18rem;"th:each="agency:${agencies}">
-        <img th:src="${agency.getImg()}"  class="card-img-top" alt="Logo">
+        <th:img th:src="${agency.getImg()}"  class="card-img-top" alt="Logo">
         <div class="card-body">
-            <h5 class="card-title" th:text="${agency.getAgencyName()}">Agency Name</h5>
+            <h5 class="card-title" th:text="${agency.getName()}">Agency Name</h5>
             <form th:method="DELETE" th:action="@{/agencies/{id} (id=${agency.getId()})}">
                 <input type="submit" th:value="Delete">
             </form>
             <a href="#" class="btn btn-primary">Go into this agency</a>
         </div>
-    </div>
+        </th:img>div>
+</div>
+
 </div>
 <a href="/agencies/new"> Create new agency</a>
 </body>
