@@ -1,6 +1,7 @@
 package peaksoft.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import peaksoft.entity.Agency;
 import peaksoft.exception.MyException;
@@ -13,6 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AgencyServiceImpl implements AgencyService {
     private final AgencyRepository agencyRepository;
+
     @Override
     public void saveAgency(Agency agency) throws MyException {
         agencyRepository.saveAgency(agency);
@@ -30,7 +32,7 @@ public class AgencyServiceImpl implements AgencyService {
 
     @Override
     public void updateAgency(Long agencyId, Agency agency) {
-        agencyRepository.updateAgency(agencyId, agency);
+        agencyRepository.updateAgency(agencyId,agency);
     }
 
     @Override

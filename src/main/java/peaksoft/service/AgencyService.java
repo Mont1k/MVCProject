@@ -6,6 +6,7 @@ import peaksoft.exception.MyException;
 import java.util.List;
 
 public interface AgencyService {
+
     void saveAgency(Agency agency) throws MyException;
     Agency getAgencyById(Long agencyId) throws MyException;
     List<Agency> getAllAgency();

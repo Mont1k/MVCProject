@@ -4,11 +4,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.intellij.lang.annotations.Pattern;
 
 import java.util.List;
 
-import static jakarta.persistence.CascadeType.ALL;
+import static jakarta.persistence.CascadeType.*;
 
 @Entity
 @Table(name = "agencies")
@@ -23,25 +22,23 @@ public class Agency {
     @Column(unique = true)
     private String name;
     private String country;
-    @Column(name = "phone_number")
     private String phoneNumber;
-    @Column(unique = true)
     private String email;
     @Column(length = 10000000)
-    private String img;
-
-    @ManyToMany(mappedBy = "agencies",cascade = ALL)
+    private String image;
+    @OneToMany(cascade = {ALL}, mappedBy = "agency")
+    private List<House> houses;
+    @ManyToMany(mappedBy = "agencies", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     private List<Customer> customers;
 
-    @OneToMany(mappedBy = "agencies",cascade = ALL)
-    private List<House> house;
-
-    public Agency(String name, String country, String phoneNumber, String email,String img) {
+    public Agency(String name, String country, String phoneNumber, String email) {
         this.name = name;
         this.country = country;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.img= img;
     }
 
+    public void addHouse(House house) {
+        houses.add(house);
+    }
 }

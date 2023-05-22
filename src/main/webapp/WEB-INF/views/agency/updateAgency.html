@@ -6,12 +6,13 @@
 </head>
 <body>
 
+
 <form th:object="${agency}" th:method="PUT" th:action="@{/agencies/update/{agencyId}(agencyId=${agencyId})}">
   <div class="container">
     <hr>
 
     <label for="name"><b>Agency name</b></label>
-    <input type="text" placeholder="Enter Agency name" th:field="*{}" name="name" id="name" required>
+    <input type="text" placeholder="Enter Agency name" th:field="*{name}" name="name" id="name" required>
 
     <label for="country"><b>Country</b></label>
     <input type="text" placeholder="Enter country" th:field="*{country}" name="country" id="country"
@@ -26,7 +27,7 @@
            required>
 
     <label for="image"><b>Image</b></label>
-    <input type="text" placeholder="Enter image" th:field="*{img}" name="image" id="image"
+    <input type="text" placeholder="Enter image" th:field="*{image}" name="image" id="image"
            required>
 
     <hr>

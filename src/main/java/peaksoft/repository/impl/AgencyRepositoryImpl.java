@@ -27,8 +27,11 @@ public class AgencyRepositoryImpl implements AgencyRepository {
 
     @Override
     public void saveAgency(Agency agency) throws MyException {
-    entityManager.persist(agency);
-    }
+        try {
+            entityManager.persist(agency);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }    }
 
     @Override
     public Agency getAgencyById(Long agencyId) throws MyException {
@@ -45,8 +48,8 @@ public class AgencyRepositoryImpl implements AgencyRepository {
     public void updateAgency(Long agencyId, Agency agency2) {
         try {
             boolean isEmpty = false;
-            for (Agency agency0 : getAllAgency()) {
-                if (Objects.equals(agency0.getId(), agencyId)) {
+            for (Agency agency : getAllAgency()) {
+                if (Objects.equals(agency.getId(), agencyId)) {
                     isEmpty = true;
                 }
             }
@@ -56,10 +59,10 @@ public class AgencyRepositoryImpl implements AgencyRepository {
                 agency1.setCountry(agency2.getCountry());
                 agency1.setPhoneNumber(agency2.getPhoneNumber());
                 agency1.setEmail(agency2.getEmail());
-                agency1.setImg(agency2.getImg());
+                agency1.setImage(agency2.getImage());
                 entityManager.merge(agency1);
             } else {
-                throw new MyException("Агенство с таким айди " + agencyId + " не найдено");
+                throw new MyException("Agency by ID : " + agencyId + " not found!");
             }
         } catch (MyException e) {
             System.out.println(e.getMessage());

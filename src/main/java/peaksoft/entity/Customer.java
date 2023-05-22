@@ -1,4 +1,5 @@
 package peaksoft.entity;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,8 @@ import static jakarta.persistence.CascadeType.*;
 
 @Entity
 @Table(name = "customers")
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 public class Customer {
     @Id
@@ -20,28 +22,23 @@ public class Customer {
     @SequenceGenerator(name = "customer_gen", sequenceName = "customer_seq", allocationSize = 1)
     private Long id;
     private String name;
-    private String surname;
-
+    private String surName;
     private String email;
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    @Column(name = "phone_number")
-    private int phoneNumber;
-    private LocalDate date_of_birth;
-
-    @ManyToMany(cascade = {DETACH, MERGE,REFRESH, PERSIST})
+    private String phoneNumber;
+    private LocalDate dateOfBirth;
+    @ManyToMany(cascade = {DETACH, MERGE, REFRESH, PERSIST})
     private List<Agency> agencies;
+    @OneToMany(cascade = {ALL}, mappedBy = "customer")
+    private List<Booking> bookings;
 
-    @OneToMany(mappedBy = "customers",cascade = {ALL})
-    private List<Booking> booking;
-
-
-    public Customer(String name, String surname, String email, Gender gender, int phoneNumber, LocalDate date_of_birth) {
+    public Customer(String name, String surName, String email, Gender gender, String phoneNumber, LocalDate dateOfBirth) {
         this.name = name;
-        this.surname = surname;
+        this.surName = surName;
         this.email = email;
         this.gender = gender;
         this.phoneNumber = phoneNumber;
-        this.date_of_birth = date_of_birth;
+        this.dateOfBirth = dateOfBirth;
     }
 }

@@ -26,15 +26,14 @@ public class House {
     private String country;
     private String description;
     private Boolean isBooked;
-    private String img;
+    @Column(length = 10000000)
+    private String image;
+    @ManyToOne(cascade = {PERSIST, DETACH, MERGE, REFRESH})
+    private Agency agency;
+    @OneToOne(cascade = {ALL},mappedBy = "house")
+    private Booking booking;
 
-    @OneToOne(mappedBy = "houses",cascade = {ALL})
-    private Booking bookings;
-
-    @ManyToOne(cascade = {DETACH, MERGE,REFRESH, PERSIST})
-    private Agency agencies;
-
-    public House(HouseType houseType, String address, int price, int room, String country, String description, Boolean isBooked,String image_Link) {
+    public House(HouseType houseType, String address, int price, int room, String country, String description, Boolean isBooked, String image) {
         this.houseType = houseType;
         this.address = address;
         this.price = price;
@@ -42,6 +41,6 @@ public class House {
         this.country = country;
         this.description = description;
         this.isBooked = isBooked;
-        this.img= img;
+        this.image = image;
     }
 }

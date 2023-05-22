@@ -1,4 +1,5 @@
 package peaksoft.config;
+
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +23,6 @@ import java.util.Properties;
 @EnableTransactionManagement
 @ComponentScan(basePackages = "peaksoft")
 public class HibernateConfig {
-
     private final Environment environment;
 
     public HibernateConfig(Environment environment) {
@@ -38,12 +38,12 @@ public class HibernateConfig {
         dataSource.setPassword(environment.getProperty("database.pass"));
         return dataSource;
     }
-
     public Properties getHibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.show_sql", "true");
         properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-        properties.put("hibernate.hbm2ddl.auto", "update");
+        properties.put("hibernate.hbm2ddl.auto", "update" +
+                "");
         return properties;
     }
 

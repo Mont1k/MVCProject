@@ -14,9 +14,8 @@ import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "peaksoft")
+@ComponentScan("peaksoft")
 public class WebAppConfig implements WebMvcConfigurer {
-
     private final ApplicationContext applicationContext;
 
     @Autowired
@@ -40,10 +39,10 @@ public class WebAppConfig implements WebMvcConfigurer {
         templateEngine.setEnableSpringELCompiler(true);
         return templateEngine;
     }
-
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
+        registry.viewResolver(resolver);
     }
 }
