@@ -4,5 +4,6 @@ public enum HouseType {
     APARTMENT,
     COTTAGE,
     CASTLE,
-    VILLA
+    VILLA,
+    BUNGALOW
 }

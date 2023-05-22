@@ -29,7 +29,7 @@ public class HouseApi {
     @PostMapping("/save")
     public String save(@PathVariable Long agencyId, @ModelAttribute("newHouse") House house) throws MyException {
         houseService.saveHouse(agencyId, house);
-        return "redirect:/houses" + agencyId;
+        return "redirect:/houses/" + agencyId;
     }
 
     @GetMapping

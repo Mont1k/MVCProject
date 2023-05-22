@@ -8,10 +8,15 @@
 
 </head>
 <body>
-
+<style>
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+</style>
 
 </tr>
-
+<div class="container">
 <div class="card" style="width: 18rem;" th:each="house:${houses}">
   <img th:src="${house.getImage()}" class="card-img-top" alt="Company's Image">
   <div class="card-body">
@@ -22,7 +27,7 @@
     <p class="card-text" th:text="${house.country}">Country</p>
     <p class="card-text" th:text="${house.description}">Description</p>
     <p class="card-text" th:text="${house.isBooked}">Is Booked</p>
-
+  </div>
     <form th:method="GET" th:action="@{/houses/{agencyId}/{houseId}/edit(agencyId=${agencyId}, houseId=${house.id})}">
       <input type="submit" th:value="Update" class="btn btn-primary">
     </form>
